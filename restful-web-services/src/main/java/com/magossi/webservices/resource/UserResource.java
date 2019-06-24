@@ -25,8 +25,7 @@ public class UserResource {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<User> retrieveUser(@PathVariable int id) {
-		User user = userService.findById(id);
-		return ResponseEntity.ok(user);
+		return ResponseEntity.ok(userService.findById(id));
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -47,14 +46,6 @@ public class UserResource {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<User>> retrieveAllUsers() {
-		List<User> respondeBody = null;
-		HttpStatus resposeStatus = HttpStatus.NO_CONTENT;
-
-		List<User> users = userService.findAll();
-		if(!CollectionUtils.isEmpty(users)){
-			respondeBody = users;
-			resposeStatus = HttpStatus.OK;
-		}
-		return ResponseEntity.status(resposeStatus).body(respondeBody);
+		return ResponseEntity.ok(userService.findAll());
 	}
 }
